@@ -2,13 +2,27 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Frío o Caliente - V1</title>
+  <title>Frío o Caliente - V2</title>
 </head>
 <body>
   <h1>¡Adivina el número!</h1>
-  <p>Estoy pensando en un número del 1 al 100...</p>
-
   <input type="number" id="guessInput" placeholder="Tu número">
-  <button> Adivinar </button>
+  <button onclick="checkGuess()">Adivinar</button>
+  <p id="feedback"></p>
+
+  <script>
+    const secretNumber = Math.floor(Math.random() * 100) + 1;
+
+    function checkGuess() {
+      const guess = parseInt(document.getElementById("guessInput").value);
+      const feedback = document.getElementById("feedback");
+
+      if (guess === secretNumber) {
+        feedback.textContent = "🎉 ¡Correcto!";
+      } else {
+        feedback.textContent = "❌ Intenta de nuevo.";
+      }
+    }
+  </script>
 </body>
 </html>
