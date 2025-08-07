@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Frío o Caliente - V2</title>
+  <title>Frío o Caliente - V3</title>
 </head>
 <body>
   <h1>¡Adivina el número!</h1>
@@ -16,11 +16,14 @@
     function checkGuess() {
       const guess = parseInt(document.getElementById("guessInput").value);
       const feedback = document.getElementById("feedback");
+      const diff = Math.abs(secretNumber - guess);
 
       if (guess === secretNumber) {
         feedback.textContent = "🎉 ¡Correcto!";
+      } else if (diff <= 10) {
+        feedback.textContent = "🔥 Caliente";
       } else {
-        feedback.textContent = "❌ Intenta de nuevo.";
+        feedback.textContent = "🧊 Frío";
       }
     }
   </script>
