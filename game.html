@@ -2,13 +2,19 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Frío o Caliente - V3</title>
+  <title>Frío o Caliente - V4</title>
+  <style>
+    .attempt {
+      margin: 5px 0;
+    }
+  </style>
 </head>
 <body>
   <h1>¡Adivina el número!</h1>
   <input type="number" id="guessInput" placeholder="Tu número">
   <button onclick="checkGuess()">Adivinar</button>
   <p id="feedback"></p>
+  <div id="history"></div>
 
   <script>
     const secretNumber = Math.floor(Math.random() * 100) + 1;
@@ -16,15 +22,24 @@
     function checkGuess() {
       const guess = parseInt(document.getElementById("guessInput").value);
       const feedback = document.getElementById("feedback");
+      const history = document.getElementById("history");
       const diff = Math.abs(secretNumber - guess);
 
+      let result = "";
       if (guess === secretNumber) {
-        feedback.textContent = "🎉 ¡Correcto!";
+        result = "🎉 ¡Correcto!";
       } else if (diff <= 10) {
-        feedback.textContent = "🔥 Caliente";
+        result = "🔥 Caliente";
       } else {
-        feedback.textContent = "🧊 Frío";
+        result = "🧊 Frío";
       }
+
+      feedback.textContent = result;
+
+      const entry = document.createElement("p");
+      entry.className = "attempt";
+      entry.textContent = `Intento: ${guess} ➜ ${result}`;
+      history.appendChild(entry);
     }
   </script>
 </body>
